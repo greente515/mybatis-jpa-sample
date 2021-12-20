@@ -12,8 +12,8 @@
       ┣ main  
       ┃ ┣ java  
       ┃ ┃ ┗ com  
-      ┃ ┃ ┃ ┗ stagex  
-      ┃ ┃ ┃ ┃ ┗ api  
+      ┃ ┃ ┃ ┗ example  
+      ┃ ┃ ┃ ┃ ┗ sample  
       ┃ ┃ ┃ ┃ ┃ ┣ common  
       ┃ ┃ ┃ ┃ ┃ ┃ ┣ config  
       ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┣ JpaDataSourceConfig.java  
@@ -48,8 +48,8 @@
       ┗ test  
       ┃ ┣ java  
       ┃ ┃ ┗ com  
-      ┃ ┃ ┃ ┗ stagex  
-      ┃ ┃ ┃ ┃ ┗ api  
+      ┃ ┃ ┃ ┗ example  
+      ┃ ┃ ┃ ┃ ┗ sample  
       ┃ ┃ ┃ ┃ ┃ ┣ sample  
       ┃ ┃ ┃ ┃ ┃ ┃ ┗ persistence  
       ┃ ┃ ┃ ┃ ┃ ┃ ┃ ┗ repository  
