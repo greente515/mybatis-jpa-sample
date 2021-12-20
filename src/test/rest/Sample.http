@@ -1,0 +1,11 @@
+### JpaRepository 를 활용한 전체 리스트 테스트
+GET http://localhost:8080/test/findAll
+
+### JpaRepository 를 활용한 1개 리스트 테스트
+GET http://localhost:8080/test/findOne/{{id}}
+
+### Mybatis 를 활용한 1개 리스트 테스트
+GET http://localhost:8080/test/findOne2/{{id}}
+
+### QueryDsl 을 활용한 전체리스트 테스트
+GET http://localhost:8080/test/findAll2
