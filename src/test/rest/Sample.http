@@ -1,0 +1,8 @@
+###
+GET http://localhost:8080/test/findAll
+
+###
+GET http://localhost:8080/test/findOne/{{id}}
+
+###
+GET http://localhost:8080/test/findOne2/{{id}}
