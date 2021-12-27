@@ -1,0 +1,22 @@
+////
+=, == 제목
+:toc: left 왼쪽에 사이드바가 생성되고, 목차들에 링크가 자동을 걸림
+:toclevels: 2 목차들의 레벨을 어디까지 보여줄 것인지 설정
+////
+= REST API
+:toc: left
+:toclevels: 2
+:source-highlighter: highlightjs
+
+//== 1. 개요
+//
+//== 2. 인증
+
+== 3. 샘플
+include::{snippets}/findAll-post/curl-request.adoc[]
+include::{snippets}/findAll-post/httpie-request.adoc[]
+include::{snippets}/findAll-post/http-request.adoc[]
+include::{snippets}/findAll-post/http-response.adoc[]
+include::{snippets}/findAll-post/request-body.adoc[]
+include::{snippets}/findAll-post/response-body.adoc[]
+

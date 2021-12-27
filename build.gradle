@@ -1,0 +1,85 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "com.ewerk.gradle.plugins.querydsl" version "1.0.10" //querydsl
+    id 'org.asciidoctor.convert' version "1.5.9.2" //restdocs
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' //jpa
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0' //mybatis
+    implementation 'com.querydsl:querydsl-jpa' //querydsl
+    implementation 'org.liquibase:liquibase-core' //liquibase
+    implementation 'org.projectlombok:lombok:1.18.22'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    runtimeOnly 'mysql:mysql-connector-java' //mysql
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    asciidoctor 'org.springframework.restdocs:spring-restdocs-asciidoctor:1.2.6.RELEASE' //restdocs
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc:2.0.5.RELEASE' //restdocs
+}
+
+test {
+    useJUnitPlatform()
+}
+
+//queryDsl start
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+
+sourceSets {
+    main.java.srcDir querydslDir
+}
+
+configurations {
+    querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+//queryDsl end
+//restdocs start
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+asciidoctor {
+    inputs.dir snippetsDir
+    dependsOn test //gradle build 시 tet -> asciidoctor 순으로 수행
+}
+
+bootJar {
+    dependsOn asciidoctor //gradle build 시 asciidoctor 순으로 수행
+
+    from file("build/asciidoc/html5/") //gradle build 시 ./build/asciidoc/html5/ 에 html 파일 생성
+    into file("src/main/resources/static/docs") //html 파일이 jar 안의 /static/docs/ 폴더로 복사됨
+}
+//restdocs end
